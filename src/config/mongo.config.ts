@@ -9,7 +9,7 @@ export const getMongoConfig = async (
 })
 
 const getMongoOption = () => ({
-	useNewUrlParser: true,
+	//useNewUrlParser: true,
 	//useCreateIndex: true,
 	useUnifiedTopology: true,
 })

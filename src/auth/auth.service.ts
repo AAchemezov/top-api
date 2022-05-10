@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common'
+import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { AuthDto } from './dto/auth.dto'
 import { ModelType } from '@typegoose/typegoose/lib/types'
 import { UserModel } from './user.model'
@@ -38,11 +38,11 @@ export class AuthService {
 	): Promise<Pick<UserModel, 'email'>> {
 		const user = await this.findUser(email)
 		if (!user) {
-			throw new BadRequestException(USER_NOT_FOUND_ERROR)
+			throw new UnauthorizedException(USER_NOT_FOUND_ERROR)
 		}
 		const isCorrectUserPassword = await compare(password, user.passwordHash)
 		if (!isCorrectUserPassword) {
-			throw new BadRequestException(INCORRECT_PASSWORD_ERROR)
+			throw new UnauthorizedException(INCORRECT_PASSWORD_ERROR)
 		}
 		return { email: user.email }
 	}

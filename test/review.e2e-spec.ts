@@ -42,6 +42,12 @@ describe('ReviewController (e2e)', () => {
 			.catch(done)
 	})
 
+	it('/review/create (POST) - fail', () =>
+		request(app.getHttpServer())
+			.post('/review/create')
+			.send({ ...testDto, rating: 0 })
+			.expect(400))
+
 	it('/review/byProduct/:productId (GET) - success', (done) => {
 		request(app.getHttpServer())
 			.get('/review/byProduct/' + productId)

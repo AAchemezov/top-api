@@ -36,10 +36,10 @@ export class ReviewController {
 	async notify(@Body() dto: CreateReviewDto) {
 		const message =
 			`Имя: ${dto.name}\n` +
-			`Заголовок: ${dto.name}\n` +
-			`Описание: ${dto.name}\n` +
-			`Рейтинг: ${dto.name}\n` +
-			`ID продукта: ${dto.name}`
+			`Заголовок: ${dto.title}\n` +
+			`Описание: ${dto.description}\n` +
+			`Рейтинг: ${dto.rating}\n` +
+			`ID продукта: ${dto.productId}`
 		return this.telegramService.sendMessage(message)
 	}
 
